@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Head content -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio - Login & Profile</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Styles -->
+    <style>
+        /* Styles for forms and profiles */
+        .form-container {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        .profile-container {
+            max-width: 800px;
+            margin: 50px auto;
+        }
+        .toggle-link {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+        /* Hide profile section by default */
+        #user-profile {
+            display: none;
+        }
+        /* Show active section */
+        .active-section {
+            display: block !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-dark text-white text-center py-4">
+        <h1>My Portfolio</h1>
+    </header>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">My Portfolio</a>
+            <div class="collapse navbar-collapse" id="navbarNavLogin">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html" id="home-link">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" id="logout-button" style="display: none;">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Tabs for switching between forms -->
+        <ul class="nav nav-tabs mt-4" id="loginTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="user-login-tab" data-bs-toggle="tab" data-bs-target="#user-login" type="button" role="tab" aria-controls="user-login" aria-selected="true">User Login</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="owner-login-tab" data-bs-toggle="tab" data-bs-target="#owner-login" type="button" role="tab" aria-controls="owner-login" aria-selected="false">Owner Login</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button" role="tab" aria-controls="register" aria-selected="false">Register</button>
+            </li>
+        </ul>
+        <!-- Tab content -->
+        <div class="tab-content" id="loginTabsContent">
+            <!-- User Login Tab Pane -->
+            <div class="tab-pane fade show active" id="user-login" role="tabpanel" aria-labelledby="user-login-tab">
+                <!-- User Login Form -->
+                <div id="login-section" class="form-container">
+                    <h2 class="mt-4">User Login</h2>
+                    <form id="login-form">
+                        <div class="mb-3">
+                            <label for="login-email" class="form-label">Email:</label>
+                            <input type="email" id="login-email" name="email" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="login-password" class="form-label">Password:</label>
+                            <input type="password" id="login-password" name="password" class="form-control" required>
+                            <div id="password-strength-login" class="progress mt-2" style="height: 5px;">
+                                <div class="progress-bar"></div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                </div>
+            </div>
+            <!-- Owner Login Tab Pane -->
+            <div class="tab-pane fade" id="owner-login" role="tabpanel" aria-labelledby="owner-login-tab">
+                <!-- Owner Login Form -->
+                <div id="owner-login-section" class="form-container">
+                    <h2 class="mt-4">Owner Login</h2>
+                    <form id="owner-login-form">
+                        <div class="mb-3">
+                            <label for="owner-username" class="form-label">Username:</label>
+                            <input type="email" id="owner-username" name="owner-username" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="owner-password" class="form-label">Password:</label>
+                            <input type="password" id="owner-password" name="owner-password" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login as Owner</button>
+                    </form>
+                </div>
+            </div>
+            <!-- Register Tab Pane -->
+            <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                <!-- Registration Form -->
+                <div id="register-section" class="form-container">
+                    <h2 class="mt-4">User Registration</h2>
+                    <form id="register-form">
+                        <div class="mb-3">
+                            <label for="reg-name" class="form-label">Name:</label>
+                            <input type="text" id="reg-name" name="name" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reg-email" class="form-label">Email:</label>
+                            <input type="email" id="reg-email" name="email" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reg-phone" class="form-label">Phone Number:</label>
+                            <input type="tel" id="reg-phone" name="phone" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reg-gender" class="form-label">Gender:</label>
+                            <select id="reg-gender" name="gender" class="form-select" required>
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Prefer not to say">Prefer not to say</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reg-password" class="form-label">Password:</label>
+                            <input type="password" id="reg-password" name="password" class="form-control" required>
+                            <div id="password-strength-register" class="progress mt-2" style="height: 5px;">
+                                <div class="progress-bar"></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reg-confirm-password" class="form-label">Confirm Password:</label>
+                            <input type="password" id="reg-confirm-password" name="confirm-password" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Section -->
+        <div id="user-profile" class="profile-container">
+            <!-- Personal Details -->
+            <h2 id="profile-name">Deepak Kumar Bommala</h2>
+            <p id="profile-email">deepakbommala@gmail.com</p>
+            <p id="profile-phone">9392439382</p>
+            <p id="profile-location">Bengaluru, India</p>
+            <hr>
+
+            <!-- About Me -->
+            <section>
+                <h3>About Me</h3>
+                <p>
+                    A future computer science student, exploring the field of artificial intelligence, with current priorities centered around laying a solid machine-learning foundation and exploring full-stack development. Approaching each task with curiosity and an eagerness to learn, striving to develop abilities and skills.
+                </p>
+            </section>
+            <hr>
+
+            <!-- Education -->
+            <section>
+                <h3>Education</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Institution</th>
+                            <th>Degree</th>
+                            <th>Location</th>
+                            <th>Duration</th>
+                            <th>CGPA/Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Amrita Vishwa Vidyapeetham</td>
+                            <td>B.Tech · Computer Science and Artificial Intelligence</td>
+                            <td>Bengaluru</td>
+                            <td>Sep 2021 - Present</td>
+                            <td>8.41 CGPA</td>
+                        </tr>
+                        <tr>
+                            <td>Narayana Junior College</td>
+                            <td>12th · MPC/SSC</td>
+                            <td>Tirupati</td>
+                            <td>Apr 2019 - Mar 2021</td>
+                            <td>931/1000</td>
+                        </tr>
+                        <tr>
+                            <td>Sri Chaitanya English Medium High School</td>
+                            <td>10th · BSEAP</td>
+                            <td>Madanapalle</td>
+                            <td>Jun 2018 – Mar 2019</td>
+                            <td>10 CGPA</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <hr>
+
+            <!-- Key Skills -->
+            <section>
+                <h3>Key Skills</h3>
+                <ul>
+                    <li>Python</li>
+                    <li>Java</li>
+                    <li>SQL</li>
+                    <li>Machine Learning</li>
+                    <li>Operating Systems</li>
+                    <li>Generative AI</li>
+                </ul>
+            </section>
+            <hr>
+
+            <!-- Projects -->
+            <section>
+                <h3>Projects</h3>
+                <div class="accordion" id="projectsAccordion">
+                    <!-- Project 1 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="projectOneHeader">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#projectOne" aria-expanded="false" aria-controls="projectOne">
+                                A Beginner-Friendly Code Explainer for Python, C, and Java (Mar 2024 – May 2024)
+                            </button>
+                        </h2>
+                        <div id="projectOne" class="accordion-collapse collapse" aria-labelledby="projectOneHeader" data-bs-parent="#projectsAccordion">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Developed a web interface for a code explainer that uses PaLM for prompt engineering and Test-Bison 001 for text generation to explain Python, C, and Java codes in layman's terms.</li>
+                                    <li>The interface offers error correction, code optimization, and explanations of algorithms and pseudocode.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="projectTwoHeader">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#projectTwo" aria-expanded="false" aria-controls="projectTwo">
+                                RL-Based Telehealth System for Automated Patient Health Monitoring (Mar 2024 - May 2024)
+                            </button>
+                        </h2>
+                        <div id="projectTwo" class="accordion-collapse collapse" aria-labelledby="projectTwoHeader" data-bs-parent="#projectsAccordion">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Implemented RL techniques like Q-learning and DQN, and evaluated metrics such as mean reward and standard deviation.</li>
+                                    <li>Q-learning was determined to be the best with values of 110 and 105, respectively, and used this to design a Q-learning-based automated health system.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 3 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="projectThreeHeader">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#projectThree" aria-expanded="false" aria-controls="projectThree">
+                                A Graph-Based Approach to Automatic Car Reliability System Prediction with Probabilistic Modeling and Machine Learning (Mar 2024 - May 2024)
+                            </button>
+                        </h2>
+                        <div id="projectThree" class="accordion-collapse collapse" aria-labelledby="projectThreeHeader" data-bs-parent="#projectsAccordion">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Performed four types of analysis: car reliability using DAG, anomaly detection and root cause analysis using BN and SVM, dynamic risk analysis using BN and MLE, and driver assistance using K-means clustering.</li>
+                                    <li>Among the six classifiers considered for anomaly detection, SVM performed best with 98% accuracy.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr>
+
+            <!-- Publications -->
+            <section>
+                <h3>Publications</h3>
+                <ul>
+                    <li><a href="https://ieeexplore.ieee.org/document/10582153" target="_blank">A Multi-Class Classification Framework with SMOTE-Based Data Augmentation Technique for Alzheimer's Disease Progression | AMATHE 2024, IEEE (Jul 2024)</a></li>
+                    <li><a href="https://ieeexplore.ieee.org/document/10584590" target="_blank">Design and Development of Visual Error Detection System (VEDS) Leveraging Convolutional Neural Networks for Early Detection of Ocular Abnormalities to Mitigate Vision-Related Complications | ICCICA 2024, IEEE (Jul 2024)</a></li>
+                    <li><a href="https://ieeexplore.ieee.org/document/10626212" target="_blank">Credit Scoring for Loan Applicants Using Machine Learning Models</a></li>
+                </ul>
+            </section>
+            <hr>
+
+            <!-- Languages -->
+            <section>
+                <h3>Languages</h3>
+                <p>English, Telugu, Hindi</p>
+            </section>
+        </div>
+    </main>
+    <!-- Bootstrap JS and Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+</body>
+</html>
